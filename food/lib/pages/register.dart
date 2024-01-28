@@ -60,19 +60,15 @@ class _RegisterState extends State<Register> {
                               }
                               return null;
                             },
-                            onChanged: (value) {
-                              if (value.isEmpty) {
-                                setState(() {
-                                  _nameError = "Name is emapty.";
-                                });
-                              } else {
-                                _nameError = "";
-                              }
-                            },
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'[a-zA-Z]'))
-                            ],
+                            // onChanged: (value) {
+                            //   if (value.isEmpty) {
+                            //     setState(() {
+                            //       _nameError = "Name is emapty.";
+                            //     });
+                            //   } else {
+                            //     _nameError = "";
+                            //   }
+                            // },
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.person),
                               labelText: "Username",
@@ -90,6 +86,8 @@ class _RegisterState extends State<Register> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Email cannot be empty";
+                              } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$').hasMatch(value)) {
+                                return "Invalid email format";
                               }
                               return null;
                             },
@@ -110,13 +108,15 @@ class _RegisterState extends State<Register> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Phone cannot be empty";
+                              } else if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+                                return "Invalid phone number";
                               }
                               return null;
                             },
-                            decoration: InputDecoration(
+                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.phone),
                               labelText: "Phone",
-                              errorText: _emailError,
+                              errorText: _phoneError,
                               errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
@@ -130,6 +130,10 @@ class _RegisterState extends State<Register> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Password cannot be empty";
+                              } else if (value.length < 6) {
+                                return "Password must be at least 6 characters long";
+                              } else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$').hasMatch(value)) {
+                                return "Password must contain at least one uppercase letter, one lowercase letter, and one digit";
                               }
                               return null;
                             },

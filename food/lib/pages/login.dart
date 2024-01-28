@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food/helpers/trianglePainter.dart';
+import 'package:food/utils/api.dart';
 import 'package:food/utils/constants.dart';
 
 class Login extends StatefulWidget {
@@ -10,6 +12,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  var _formKey = GlobalKey<FormState>();
+  var _phoneController = TextEditingController();
+  var _phoneError = "";
+  var _passwordController = TextEditingController();
+  var _passwordError = "";
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -38,12 +45,22 @@ class _LoginState extends State<Login> {
                       height: 20,
                     ),
                     Form(
+                      key: _formKey,
                       child: Column(
                         children: [
                           TextFormField(
-                            decoration: InputDecoration(
+                            controller: _phoneController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Phone cannot be empty";
+                              }
+                              return null;
+                            },
+                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.phone),
                               labelText: "Phone",
+                              errorText: _phoneError,
+                              errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -52,10 +69,19 @@ class _LoginState extends State<Login> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            controller: _passwordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Password cannot be empty";
+                              }
+                              return null;
+                            },
                             obscureText: true,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.lock),
                               labelText: "Password",
+                              errorText: _passwordError,
+                              errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -70,7 +96,15 @@ class _LoginState extends State<Login> {
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 width: 150,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      var phone = _phoneController.text;
+                                      var password = _passwordController.text;
+
+                                      Api.userLogin(
+                                         phone, password);
+                                    }
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 15),

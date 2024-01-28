@@ -27,4 +27,14 @@ class Api {
     print(encodedData);
     return true;
   }
+
+  static Future<bool> userLogin(String phone, String password) async {
+    var userData = {
+      "phone": phone,
+      "password": password
+    };
+    var encodedData = jsonEncode(userData);
+    print(encodedData);
+    return true;
+  }
 }

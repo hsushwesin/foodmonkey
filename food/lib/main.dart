@@ -13,9 +13,12 @@ void main() {
         // other theme properties go here
       ),
       routes: {
-        '/': (context) => Builder(
-              builder: (BuildContext context) => Register(),
+                '/': (context) => Builder(
+              builder: (BuildContext context) => Login(),
             ),
+        // '/register': (context) => Builder(
+        //       builder: (BuildContext context) => Register(),
+        //     ),
         // '/login': (context) => Builder(
         //       builder: (BuildContext context) => Login(),
         //     ),

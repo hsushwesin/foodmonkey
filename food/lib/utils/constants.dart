@@ -33,14 +33,14 @@ List<Tag> tags = [
 ];
 
 List<Item> items = [
-  Item(id: "1",name: "Item 1", image: "1.jpg"),
-  Item(id: "2",name: "Item 2", image: "2.jpg"),
-  Item(id: "3",name: "Item 3", image: "3.jpg"),
-  Item(id: "4",name: "Item 4", image: "4.jpg"),
-  Item(id: "5",name: "Item 5", image: "5.jpg"),
-  Item(id: "6",name: "Item 6", image: "6.jpg"),
-  Item(id: "7",name: "Item 7", image: "7.jpg"),
-  Item(id: "8",name: "Item 8", image: "8.jpg"),
-  Item(id: "9",name: "Item 9", image: "9.jpg"),
-  Item(id: "10",name: "Item 10", image: "10.jpg"),
+  Item(id: "1",name: "Item 1", image: "1.png"),
+  Item(id: "2",name: "Item 2", image: "2.png"),
+  Item(id: "3",name: "Item 3", image: "3.png"),
+  Item(id: "4",name: "Item 4", image: "4.png"),
+  Item(id: "5",name: "Item 5", image: "5.png"),
+  Item(id: "6",name: "Item 6", image: "6.png"),
+  Item(id: "7",name: "Item 7", image: "7.png"),
+  Item(id: "8",name: "Item 8", image: "8.png"),
+  Item(id: "9",name: "Item 9", image: "9.png"),
+  Item(id: "10",name: "Item 10", image: "10.png"),
 ];

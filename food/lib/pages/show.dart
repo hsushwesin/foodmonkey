@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food/helpers/customGrid.dart';
+import 'package:food/models/item.dart';
 import 'package:food/models/tag.dart';
 import 'package:food/utils/constants.dart';
 
@@ -17,6 +19,7 @@ class _ShowState extends State<Show> {
       appBar: AppBar(title: Text("Products")),
       body: Column(children: [
         _buildCustomNavBar(),
+        Expanded(child: CustomGrid.makeItemGrid(items))
       ]),
     );
   }
@@ -24,20 +27,18 @@ class _ShowState extends State<Show> {
   Widget _buildCustomNavBar() {
     return Container(
       height: 45,
-      decoration: BoxDecoration(
-        color: primary
-      ),
+      decoration: BoxDecoration(color: primary),
       child: ListView.builder(
-        itemBuilder: (context, index) => _buildNavTitle(index,tags[index]),
+        itemBuilder: (context, index) => _buildNavTitle(index, tags[index]),
         itemCount: tags.length,
         scrollDirection: Axis.horizontal,
       ),
     );
   }
 
-  Widget _buildNavTitle(index,Tag tag) {
+  Widget _buildNavTitle(index, Tag tag) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         setState(() {
           currentIndex = index;
         });
@@ -48,12 +49,15 @@ class _ShowState extends State<Show> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Column(
               children: [
-                Text(tag.name,style: TextStyle(fontSize: 20),),
+                Text(
+                  tag.name,
+                  style: TextStyle(fontSize: 20),
+                ),
                 Container(
                   width: 40,
                   height: 2,
                   decoration: BoxDecoration(
-                    color: currentIndex == index ? accent: Colors.transparent,
+                    color: currentIndex == index ? accent : Colors.transparent,
                   ),
                 ),
               ],

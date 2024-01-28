@@ -54,8 +54,14 @@ class _RegisterState extends State<Register> {
                         children: [
                           TextFormField(
                             controller: _nameController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Name cannot be empty";
+                              }
+                              return null;
+                            },
                             onChanged: (value) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 setState(() {
                                   _nameError = "Name is emapty.";
                                 });
@@ -64,7 +70,8 @@ class _RegisterState extends State<Register> {
                               }
                             },
                             inputFormatters: [
-                              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[a-zA-Z]'))
                             ],
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.person),
@@ -80,6 +87,12 @@ class _RegisterState extends State<Register> {
                           SizedBox(height: 20),
                           TextFormField(
                             controller: _emailController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Email cannot be empty";
+                              }
+                              return null;
+                            },
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email),
                               labelText: "Email",
@@ -94,6 +107,12 @@ class _RegisterState extends State<Register> {
                           SizedBox(height: 20),
                           TextFormField(
                             controller: _phoneController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Phone cannot be empty";
+                              }
+                              return null;
+                            },
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.phone),
                               labelText: "Phone",
@@ -108,6 +127,12 @@ class _RegisterState extends State<Register> {
                           SizedBox(height: 20),
                           TextFormField(
                             controller: _passwordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Password cannot be empty";
+                              }
+                              return null;
+                            },
                             obscureText: true,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.lock),
@@ -129,13 +154,15 @@ class _RegisterState extends State<Register> {
                                 width: 150,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    var name = _nameController.text;
-                                    var email = _emailController.text;
-                                    var phone = _phoneController.text;
-                                    var password = _passwordController.text;
+                                    if (_formKey.currentState!.validate()) {
+                                      var name = _nameController.text;
+                                      var email = _emailController.text;
+                                      var phone = _phoneController.text;
+                                      var password = _passwordController.text;
 
-                                    Api.userRegister(
-                                        name, email, phone, password);
+                                      Api.userRegister(
+                                          name, email, phone, password);
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(

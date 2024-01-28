@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food/pages/flash.dart';
 import 'package:food/pages/home.dart';
+import 'package:food/pages/register.dart';
 
 void main() {
   runApp(
@@ -11,9 +12,12 @@ void main() {
         // other theme properties go here
       ),
       routes: {
-        '/': (context) => Builder(
-              builder: (BuildContext context) => Flash(),
+        '/register': (context) => Builder(
+              builder: (BuildContext context) => Register(),
             ),
+            //         '/': (context) => Builder(
+            //   builder: (BuildContext context) => Flash(),
+            // ),
         '/home': (context) => Builder(
               builder: (BuildContext context) => Home(),
             ),

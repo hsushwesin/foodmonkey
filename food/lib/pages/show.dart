@@ -3,6 +3,7 @@ import 'package:food/helpers/customGrid.dart';
 import 'package:food/models/item.dart';
 import 'package:food/models/tag.dart';
 import 'package:food/utils/constants.dart';
+import 'package:food/utils/global.dart';
 
 class Show extends StatefulWidget {
   const Show({Key? key}) : super(key: key);
@@ -19,9 +20,15 @@ class _ShowState extends State<Show> {
       appBar: AppBar(title: Text("Products")),
       body: Column(children: [
         _buildCustomNavBar(),
-        Expanded(child: CustomGrid.makeItemGrid(items))
+        Expanded(child: CustomGrid.makeItemGrid(items, refresh))
       ]),
     );
+  }
+
+  refresh() {
+    setState(() {
+      print(Global.cartItems.length);
+    });
   }
 
   Widget _buildCustomNavBar() {

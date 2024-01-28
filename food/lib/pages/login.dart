@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:food/helpers/trianglePainter.dart';
 import 'package:food/utils/api.dart';
 import 'package:food/utils/constants.dart';

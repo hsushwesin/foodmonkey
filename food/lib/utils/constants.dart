@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:food/models/item.dart';
 import 'package:food/models/product.dart';
 import 'package:food/models/tag.dart';
 
@@ -29,4 +30,17 @@ List<Tag> tags = [
   Tag(name: "Popular", image: "popular.jpg"),
   Tag(name: "Drink", image: "Drink.png"),
   Tag(name: "Food", image: "Food.png"),
+];
+
+List<Item> items = [
+  Item(id: "1",name: "Item 1", image: "1.jpg"),
+  Item(id: "2",name: "Item 2", image: "2.jpg"),
+  Item(id: "3",name: "Item 3", image: "3.jpg"),
+  Item(id: "4",name: "Item 4", image: "4.jpg"),
+  Item(id: "5",name: "Item 5", image: "5.jpg"),
+  Item(id: "6",name: "Item 6", image: "6.jpg"),
+  Item(id: "7",name: "Item 7", image: "7.jpg"),
+  Item(id: "8",name: "Item 8", image: "8.jpg"),
+  Item(id: "9",name: "Item 9", image: "9.jpg"),
+  Item(id: "10",name: "Item 10", image: "10.jpg"),
 ];

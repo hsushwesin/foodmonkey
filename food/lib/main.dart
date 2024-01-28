@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food/pages/flash.dart';
 import 'package:food/pages/home.dart';
+import 'package:food/pages/login.dart';
 import 'package:food/pages/register.dart';
 
 void main() {
@@ -15,9 +16,12 @@ void main() {
         '/register': (context) => Builder(
               builder: (BuildContext context) => Register(),
             ),
-            //         '/': (context) => Builder(
-            //   builder: (BuildContext context) => Flash(),
-            // ),
+        '/login': (context) => Builder(
+              builder: (BuildContext context) => Login(),
+            ),
+        '/': (context) => Builder(
+              builder: (BuildContext context) => Flash(),
+            ),
         '/home': (context) => Builder(
               builder: (BuildContext context) => Home(),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food/helpers/trianglePainter.dart';
 import 'package:food/utils/api.dart';
 import 'package:food/utils/constants.dart';
@@ -54,8 +55,17 @@ class _RegisterState extends State<Register> {
                           TextFormField(
                             controller: _nameController,
                             onChanged: (value) {
-                              print(value);
+                              if(value.isEmpty){
+                                setState(() {
+                                  _nameError = "Name is emapty.";
+                                });
+                              } else {
+                                _nameError = "";
+                              }
                             },
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))
+                            ],
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.person),
                               labelText: "Username",

@@ -27,6 +27,6 @@ List<Product> cats = [
 List<Tag> tags = [
   Tag(name: "Flash Sale", image: "flash_sale.jpg"),
   Tag(name: "Popular", image: "popular.jpg"),
-  Tag(name: "Drink", image: "Drink.jpg"),
-  Tag(name: "Food", image: "Food.jpg"),
+  Tag(name: "Drink", image: "Drink.png"),
+  Tag(name: "Food", image: "Food.png"),
 ];

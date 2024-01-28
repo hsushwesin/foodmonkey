@@ -13,18 +13,18 @@ void main() {
         // other theme properties go here
       ),
       routes: {
-        '/register': (context) => Builder(
+        '/': (context) => Builder(
               builder: (BuildContext context) => Register(),
             ),
-        '/login': (context) => Builder(
-              builder: (BuildContext context) => Login(),
-            ),
-        '/': (context) => Builder(
-              builder: (BuildContext context) => Flash(),
-            ),
-        '/home': (context) => Builder(
-              builder: (BuildContext context) => Home(),
-            ),
+        // '/login': (context) => Builder(
+        //       builder: (BuildContext context) => Login(),
+        //     ),
+        // '/': (context) => Builder(
+        //       builder: (BuildContext context) => Flash(),
+        //     ),
+        // '/home': (context) => Builder(
+        //       builder: (BuildContext context) => Home(),
+        //     ),
       },
     ),
   );

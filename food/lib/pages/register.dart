@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food/helpers/trianglePainter.dart';
+import 'package:food/utils/api.dart';
 import 'package:food/utils/constants.dart';
 
 class Register extends StatefulWidget {
@@ -10,6 +11,15 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  var _formKey = GlobalKey<FormState>();
+  var _nameController = TextEditingController();
+  var _nameError = "";
+  var _emailController = TextEditingController();
+  var _emailError = "";
+  var _phoneController = TextEditingController();
+  var _phoneError = "";
+  var _passwordController = TextEditingController();
+  var _passwordError = "";
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -38,14 +48,19 @@ class _RegisterState extends State<Register> {
                       height: 20,
                     ),
                     Form(
+                      key: _formKey,
                       child: Column(
                         children: [
                           TextFormField(
+                            controller: _nameController,
+                            onChanged: (value) {
+                              print(value);
+                            },
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.person),
                               labelText: "Username",
-                              // errorText: "Username is required",
-                              // errorBorder: OutlineInputBorder(),
+                              errorText: _nameError,
+                              errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -54,9 +69,12 @@ class _RegisterState extends State<Register> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            controller: _emailController,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email),
                               labelText: "Email",
+                              errorText: _emailError,
+                              errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -65,9 +83,12 @@ class _RegisterState extends State<Register> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            controller: _phoneController,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.phone),
                               labelText: "Phone",
+                              errorText: _emailError,
+                              errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -76,10 +97,13 @@ class _RegisterState extends State<Register> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
+                            controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.lock),
                               labelText: "Password",
+                              errorText: _passwordError,
+                              errorBorder: OutlineInputBorder(),
                               enabledBorder: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -94,7 +118,15 @@ class _RegisterState extends State<Register> {
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 width: 150,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    var name = _nameController.text;
+                                    var email = _emailController.text;
+                                    var phone = _phoneController.text;
+                                    var password = _passwordController.text;
+
+                                    Api.userRegister(
+                                        name, email, phone, password);
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 15),
